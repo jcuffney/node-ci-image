@@ -1,0 +1,27 @@
+version: 2
+
+defaults: &defaults
+  docker: 
+    - image: jcuffney/node-ci-image
+  working_directory: ~/repo
+
+jobs:
+
+  build: 
+    <<: *defaults
+    steps:
+      - run: make build
+
+  push:
+    <<: *defaults
+    steps:
+      - run: make push
+          
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+      - push:
+        requires:
+          - build

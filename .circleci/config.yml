@@ -2,26 +2,38 @@ version: 2
 
 defaults: &defaults
   docker: 
-    - image: jcuffney/node-ci-image
+    - image: ubuntu:latest
   working_directory: ~/repo
 
 jobs:
 
+  install_docker:
+    <<: *defaults
+    steps:
+      - run: apt-get update
+      - run: apt-get install -y curl
+      - run: curl -sSL https://get.docker.com/ 41 | sh
+
   build: 
     <<: *defaults
     steps:
+      - checkout
       - run: make build
 
   push:
     <<: *defaults
     steps:
+      - checkout
       - run: make push
           
 workflows:
   version: 2
   build:
     jobs:
-      - build
+      - build:
+        requires:
+          - install_docker
       - push:
         requires:
+          - install_docker
           - build

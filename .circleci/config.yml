@@ -2,8 +2,6 @@ version: 2
 jobs:
  build:
    machine: true
-   environment:
-     TAG: "0.1.$CIRCLE_BUILD_NUM"
    steps:
     - checkout
 
@@ -11,7 +9,7 @@ jobs:
     - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
     # build the application image
-    - run: docker build -t jcuffney/node-ci-image:$TAG .
+    - run: docker build -t jcuffney/node-ci-image:0.1.$CIRCLE_BUILD_NUM .
 
     # deploy the image
-    - run: docker push jcuffney/node-ci-image:$TAG
+    - run: docker push jcuffney/node-ci-image:0.1.$CIRCLE_BUILD_NUM

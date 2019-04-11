@@ -3,7 +3,7 @@ jobs:
  build:
    machine: true
    environment:
-     TAG: 0.1.${CIRCLE_BUILD_NUM}
+     TAG: "0.1.${CIRCLE_BUILD_NUM}"
    steps:
     - checkout
 

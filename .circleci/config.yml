@@ -1,14 +1,14 @@
 version: 2
 jobs:
+
  build:
    machine: true
-   environment:
-    #  TAG: "0.1.${CIRCLE_BUILD_NUM}"
-    TAG: latest
    steps:
     - checkout
 
-    # login 
+    - run: TAG = 0.1.$CIRCLE_BUILD_NUM
+
+    # login
     - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
     # build the application image

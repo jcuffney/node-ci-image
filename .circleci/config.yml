@@ -12,7 +12,7 @@ jobs:
     - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
     # build the application image
-    - run: docker build -t node-ci-image:TAG .
+    - run: docker build -t "node-ci-image:$TAG" .
 
     # deploy the image
-    - run: docker push node-ci-image:TAG
+    - run: docker push "node-ci-image:$TAG"

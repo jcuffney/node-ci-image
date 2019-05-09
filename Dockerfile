@@ -21,6 +21,7 @@ RUN apt-get install -yq \
   apt-transport-https \
   sudo \
   unzip \
+  zip \
   wget \
   curl \
   gnupg2 \ 

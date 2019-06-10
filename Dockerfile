@@ -44,6 +44,9 @@ RUN npm i -g n && \
   n ${NODE_VERSION} -q && \
   npm i -g npm
 
+# install npm global packages - expo
+RUN npm i -g expo-cli
+
 # install aws cli
 RUN curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" && \
   unzip -q awscli-bundle.zip && \

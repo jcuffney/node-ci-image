@@ -23,6 +23,7 @@ RUN apt-get install -yq \
   unzip \
   wget \
   curl \
+  xvfb \
   gnupg2
 
 # yarn

@@ -4,7 +4,7 @@ ARG TERRAFORM_VERSION=0.11.11
 
 FROM ubuntu:${UBUNTU_VERSION}
 
-LABEL maintainer="josephcuffney@gmail.com"
+LABEL maintainer="joe@cuffney.com"
 
 # ENV TERRAFORM_VERSION=${TERRAFORM_VERSION}
 
@@ -21,10 +21,13 @@ RUN apt-get install -yq \
   apt-transport-https \
   sudo \
   unzip \
+  zip \
   wget \
   curl \
   xvfb \
-  gnupg2
+  gnupg2 \ 
+  make \
+  python-pip
 
 # yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
@@ -53,6 +56,9 @@ RUN curl https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linu
   unzip terraform.zip && \
   sudo install terraform /usr/local/bin/ && \
   terraform --version
+
+# AWS SAM
+RUN pip install --user aws-sam-cli
 
 # circleci user
 RUN groupadd --gid 3434 circleci \
